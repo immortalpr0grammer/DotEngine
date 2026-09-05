@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/engine.dir/src/glad.c.o.d"
   "CMakeFiles/engine.dir/src/main.cpp.o"
   "CMakeFiles/engine.dir/src/main.cpp.o.d"
+  "CMakeFiles/engine.dir/src/shader.cpp.o"
+  "CMakeFiles/engine.dir/src/shader.cpp.o.d"
   "engine"
   "engine.pdb"
 )

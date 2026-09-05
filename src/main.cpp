@@ -2,6 +2,7 @@
 #include <cmath>
 #include "../include/glad/glad.h"
 #include "../include/GLFW/glfw3.h"
+#include "shader.hpp"
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -109,56 +110,7 @@ int main() {
  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)(3 * sizeof(float)));
  glEnableVertexAttribArray(1);
 
- uint vertexShader;
- vertexShader = glCreateShader(GL_VERTEX_SHADER);
- glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
- glCompileShader(vertexShader);
-
- int success;
- glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
- if (!success) {
-  char infolog[512];
-  glGetShaderInfoLog(vertexShader, 512, NULL, infolog);
-  std::cout << "Vertex shader compilation error:\n" << infolog;
-  return -1;
- }
-
- uint fragmentShader;
- fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
- glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
- glCompileShader(fragmentShader);
-
- glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
- if (!success) {
-  char infolog[512];
-  glGetShaderInfoLog(fragmentShader, 512, NULL, infolog);
-  std::cout << "Fragment shader compilation error:\n" << infolog;
-  return -1;
- }
-
- uint shaderProgram;
- shaderProgram = glCreateProgram();
- glAttachShader(shaderProgram, vertexShader);
- glAttachShader(shaderProgram, fragmentShader);
- glLinkProgram(shaderProgram);
-
- glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
- if (!success) {
-  char infolog[512];
-  glGetProgramInfoLog(shaderProgram, 512, NULL, infolog);
-  std::cout << "Shader program linking error:\n" << infolog;
-  return -1;
- }
-
-
-
- glUseProgram(shaderProgram);
- glBindVertexArray(VAO);
- glBindBuffer(1, EBO);
- glDeleteShader(vertexShader);
- glDeleteShader(fragmentShader);
-
-
+ shader shaderProgram("shaders/vertex.sha", "shaders/fragment.sha");
 
  while (!glfwWindowShouldClose(window)) {
   processInput(window);
@@ -166,11 +118,11 @@ int main() {
   glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
 
-  glUseProgram(shaderProgram);
+  shaderProgram.use();
 
   float time = glfwGetTime();
   float greenValue = (sin(time) / 2.0f) + 0.5f;
-  //glUniform4f(glGetUniformLocation(shaderProgram, "inColor"), 0.0f, greenValue, 0.0f, 1.0f);
+  glUniform4f(glGetUniformLocation(shaderProgram.ID, "inColor"), 0.0f, greenValue, 0.0f, 1.0f);
 
   glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(float), GL_UNSIGNED_INT, 0);
 

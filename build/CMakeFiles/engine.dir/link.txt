@@ -1,1 +1,1 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/engine.dir/link.d CMakeFiles/engine.dir/src/main.cpp.o CMakeFiles/engine.dir/src/glad.c.o -o engine  /home/lasse/Programming/opengl/lib/libglfw3.a
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/engine.dir/link.d CMakeFiles/engine.dir/src/main.cpp.o CMakeFiles/engine.dir/src/glad.c.o CMakeFiles/engine.dir/src/shader.cpp.o -o engine  /home/lasse/Programming/opengl/lib/libglfw3.a

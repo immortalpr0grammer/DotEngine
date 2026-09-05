@@ -10,6 +10,8 @@ target_sources(engine
     src/glad.c
     include/GLFW/glfw3.h
     include/glad/glad.h
+    src/shader.hpp
+    src/shader.cpp
 )
 
 target_link_libraries(engine

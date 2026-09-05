@@ -85,12 +85,12 @@ clean: CMakeFiles/engine.dir/clean
 CMakeFiles/engine.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lasse/Programming/opengl/build/CMakeFiles --progress-num=1,2,3 "Built target engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lasse/Programming/opengl/build/CMakeFiles --progress-num=1,2,3,4 "Built target engine"
 .PHONY : CMakeFiles/engine.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/engine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lasse/Programming/opengl/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lasse/Programming/opengl/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/engine.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lasse/Programming/opengl/build/CMakeFiles 0
 .PHONY : CMakeFiles/engine.dir/rule
@@ -102,7 +102,7 @@ engine: CMakeFiles/engine.dir/rule
 # codegen rule for target.
 CMakeFiles/engine.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lasse/Programming/opengl/build/CMakeFiles --progress-num=1,2,3 "Finished codegen for target engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lasse/Programming/opengl/build/CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target engine"
 .PHONY : CMakeFiles/engine.dir/codegen
 
 # clean rule for target.

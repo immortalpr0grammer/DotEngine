@@ -4,6 +4,7 @@ engine: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/crtbeginS.o \
   CMakeFiles/engine.dir/src/main.cpp.o \
   CMakeFiles/engine.dir/src/glad.c.o \
+  CMakeFiles/engine.dir/src/shader.cpp.o \
   /home/lasse/Programming/opengl/lib/libglfw3.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/../../../../lib64/libm.so \
@@ -42,6 +43,8 @@ engine: \
 CMakeFiles/engine.dir/src/main.cpp.o:
 
 CMakeFiles/engine.dir/src/glad.c.o:
+
+CMakeFiles/engine.dir/src/shader.cpp.o:
 
 /home/lasse/Programming/opengl/lib/libglfw3.a:
 
