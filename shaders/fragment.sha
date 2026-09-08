@@ -1,14 +1,30 @@
 #version 330 core
 out vec4 FragColor;
+
 in vec3 color;
+in vec2 textureCoords;
 
 uniform vec4 inColor;
+uniform sampler2D inTexture;
+
+uniform int useInColor;
+uniform int useInTexture;
 
 void main() {
- if (inColor == vec4(0.0f, 0.0f, 0.0f, 0.0f)) {
-  FragColor = vec4(color, 1.0);
+ if (useInTexture == 0) {
+  if (useInColor == 0) {
+   FragColor = vec4(color, 1.0);
+  }
+  else {
+   FragColor = inColor;
+  }
  }
  else {
-  FragColor = inColor;
+  if (useInColor == 0) {
+   FragColor = texture(inTexture, textureCoords);
+  }
+  else {
+   FragColor = texture(inTexture, textureCoords) * inColor;
+  }
  }
 };

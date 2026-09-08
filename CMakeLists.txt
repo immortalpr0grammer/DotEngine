@@ -12,6 +12,7 @@ target_sources(engine
     include/glad/glad.h
     src/shader.hpp
     src/shader.cpp
+    src/stb_image.cpp
 )
 
 target_link_libraries(engine

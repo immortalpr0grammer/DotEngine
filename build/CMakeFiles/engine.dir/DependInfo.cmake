@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/lasse/Programming/opengl/src/glad.c" "CMakeFiles/engine.dir/src/glad.c.o" "gcc" "CMakeFiles/engine.dir/src/glad.c.o.d"
   "/home/lasse/Programming/opengl/src/main.cpp" "CMakeFiles/engine.dir/src/main.cpp.o" "gcc" "CMakeFiles/engine.dir/src/main.cpp.o.d"
   "/home/lasse/Programming/opengl/src/shader.cpp" "CMakeFiles/engine.dir/src/shader.cpp.o" "gcc" "CMakeFiles/engine.dir/src/shader.cpp.o.d"
+  "/home/lasse/Programming/opengl/src/stb_image.cpp" "CMakeFiles/engine.dir/src/stb_image.cpp.o" "gcc" "CMakeFiles/engine.dir/src/stb_image.cpp.o.d"
   "" "engine" "gcc" "CMakeFiles/engine.dir/link.d"
   )
 

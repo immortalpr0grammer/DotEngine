@@ -74,6 +74,7 @@ CMakeFiles/engine.dir/src/glad.c.o: /home/lasse/Programming/opengl/src/glad.c \
 CMakeFiles/engine.dir/src/main.cpp.o: /home/lasse/Programming/opengl/src/main.cpp \
   /home/lasse/Programming/opengl/include/GLFW/glfw3.h \
   /home/lasse/Programming/opengl/include/glad/glad.h \
+  /home/lasse/Programming/opengl/include/stb_image.h \
   /home/lasse/Programming/opengl/src/shader.hpp \
   /usr/include/KHR/khrplatform.h \
   /usr/include/alloca.h \
@@ -273,6 +274,7 @@ CMakeFiles/engine.dir/src/main.cpp.o: /home/lasse/Programming/opengl/src/main.cp
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/ostream \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/pstl/pstl_config.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/stdexcept \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/stdlib.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/streambuf \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/string \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/string_view \
@@ -523,6 +525,143 @@ CMakeFiles/engine.dir/src/shader.cpp.o: /home/lasse/Programming/opengl/src/shade
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/stddef.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/stdint.h
 
+CMakeFiles/engine.dir/src/stb_image.cpp.o: /home/lasse/Programming/opengl/src/stb_image.cpp \
+  /home/lasse/Programming/opengl/include/stb_image.h \
+  /usr/include/alloca.h \
+  /usr/include/assert.h \
+  /usr/include/bits/atomic_wide_counter.h \
+  /usr/include/bits/byteswap.h \
+  /usr/include/bits/endian.h \
+  /usr/include/bits/endianness.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/iscanonical.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
+  /usr/include/bits/local_lim.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
+  /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/posix2_lim.h \
+  /usr/include/bits/pthread_stack_min-dynamic.h \
+  /usr/include/bits/pthreadtypes-arch.h \
+  /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/select.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/struct_mutex.h \
+  /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/thread-shared-types.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/FILE.h \
+  /usr/include/bits/types/__FILE.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__locale_t.h \
+  /usr/include/bits/types/__mbstate_t.h \
+  /usr/include/bits/types/__sigset_t.h \
+  /usr/include/bits/types/clock_t.h \
+  /usr/include/bits/types/clockid_t.h \
+  /usr/include/bits/types/cookie_io_functions_t.h \
+  /usr/include/bits/types/locale_t.h \
+  /usr/include/bits/types/sigset_t.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/types/struct_timespec.h \
+  /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/time_t.h \
+  /usr/include/bits/types/timer_t.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/uintn-identity.h \
+  /usr/include/bits/uio_lim.h \
+  /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wchar.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/bits/xopen_lim.h \
+  /usr/include/endian.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/limits.h \
+  /usr/include/linux/limits.h \
+  /usr/include/math.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
+  /usr/include/stdio.h \
+  /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/sys/select.h \
+  /usr/include/sys/types.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/emmintrin.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bit \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/concept_check.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/cpp_type_traits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/exception_defines.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/functexcept.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/move.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/predefined_ops.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/ptr_traits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/requires_hosted.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/specfun.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/std_abs.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_algobase.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_iterator.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_iterator_base_funcs.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_iterator_base_types.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_pair.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/utility.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/version.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/cmath \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/concepts \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/cstdlib \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/debug/assertions.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/debug/debug.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/ext/numeric_traits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/ext/type_traits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/limits \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/math.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/pstl/pstl_config.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/stdlib.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/bessel_function.tcc \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/beta_function.tcc \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/ell_integral.tcc \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/exp_integral.tcc \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/gamma.tcc \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/hypergeometric.tcc \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/legendre_function.tcc \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/modified_bessel_func.tcc \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/poly_hermite.tcc \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/poly_laguerre.tcc \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/riemann_zeta.tcc \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/special_function_util.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/type_traits \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/os_defines.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/limits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/mm_malloc.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/mmintrin.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/stdarg.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/stddef.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/stdint.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/syslimits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/xmmintrin.h
+
 engine: /home/lasse/Programming/opengl/lib/libglfw3.a \
   /lib64/ld-linux-x86-64.so.2 \
   /lib64/libc.so.6 \
@@ -542,8 +681,11 @@ engine: /home/lasse/Programming/opengl/lib/libglfw3.a \
   /usr/lib64/libc_nonshared.a \
   CMakeFiles/engine.dir/src/glad.c.o \
   CMakeFiles/engine.dir/src/main.cpp.o \
-  CMakeFiles/engine.dir/src/shader.cpp.o
+  CMakeFiles/engine.dir/src/shader.cpp.o \
+  CMakeFiles/engine.dir/src/stb_image.cpp.o
 
+
+CMakeFiles/engine.dir/src/stb_image.cpp.o:
 
 CMakeFiles/engine.dir/src/main.cpp.o:
 
@@ -555,19 +697,39 @@ CMakeFiles/engine.dir/src/main.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/libgcc_s.so:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/15/libgcc.a:
-
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/crtendS.o:
 
 /usr/lib64/libm.so:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/alloc_traits.h:
+/usr/lib64/crtn.o:
 
-/usr/include/bits/thread-shared-types.h:
+/usr/lib64/Scrt1.o:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/utility.h:
+/lib64/libmvec.so.1:
 
-/usr/include/wchar.h:
+/lib64/libm.so.6:
+
+/lib64/ld-linux-x86-64.so.2:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/xmmintrin.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/syslimits.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/mmintrin.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/libgcc.a:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/limits.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/math.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/emmintrin.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/limits.h:
+
+/usr/include/bits/xopen_lim.h:
 
 /home/lasse/Programming/opengl/src/glad.c:
 
@@ -605,6 +767,8 @@ CMakeFiles/engine.dir/src/main.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/limits:
 
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/stdlib.h:
+
 /usr/include/bits/pthread_stack_min-dynamic.h:
 
 /usr/include/bits/types/clock_t.h:
@@ -632,6 +796,8 @@ CMakeFiles/engine.dir/src/main.cpp.o:
 /usr/include/bits/types/__mbstate_t.h:
 
 /usr/include/bits/stdio_lim.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/mm_malloc.h:
 
 /usr/include/asm/posix_types_64.h:
 
@@ -699,8 +865,6 @@ CMakeFiles/engine.dir/src/main.cpp.o:
 
 /usr/include/bits/select.h:
 
-/usr/lib64/Scrt1.o:
-
 /usr/include/bits/types/__fpos64_t.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/stddef.h:
@@ -708,6 +872,12 @@ CMakeFiles/engine.dir/src/main.cpp.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/type_traits:
 
 /usr/include/linux/types.h:
+
+/usr/include/bits/thread-shared-types.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/alloc_traits.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/utility.h:
 
 /usr/include/bits/struct_mutex.h:
 
@@ -719,6 +889,8 @@ CMakeFiles/engine.dir/src/main.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/version.h:
 
+/home/lasse/Programming/opengl/include/stb_image.h:
+
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/os_defines.h:
 
 /usr/include/gnu/stubs.h:
@@ -726,6 +898,10 @@ CMakeFiles/engine.dir/src/main.cpp.o:
 /usr/include/bits/types/struct_tm.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/string_view:
+
+/lib64/libc.so.6:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/exp_integral.tcc:
 
 /usr/include/stdc-predef.h:
 
@@ -742,8 +918,6 @@ CMakeFiles/engine.dir/src/shader.cpp.o:
 /usr/include/bits/atomic_wide_counter.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/iosfwd:
-
-/lib64/libm.so.6:
 
 /usr/include/bits/stdint-intn.h:
 
@@ -805,8 +979,6 @@ CMakeFiles/engine.dir/src/glad.c.o:
 
 /usr/include/bits/pthreadtypes.h:
 
-/lib64/libmvec.so.1:
-
 /usr/include/bits/floatn.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/cxxabi_forced.h:
@@ -846,6 +1018,12 @@ CMakeFiles/engine.dir/src/glad.c.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/specfun.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/cstddef:
+
+/usr/lib64/crti.o:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/stdio.h:
 
 /usr/include/bits/types/timer_t.h:
 
@@ -909,10 +1087,6 @@ CMakeFiles/engine.dir/src/glad.c.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/ostream:
 
-/usr/include/bits/math-vector.h:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/basic_ios.h:
-
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/basic_string.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/char_traits.h:
@@ -938,8 +1112,6 @@ CMakeFiles/engine.dir/src/glad.c.o:
 /home/lasse/Programming/opengl/lib/libglfw3.a:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/poly_laguerre.tcc:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/functional_hash.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/hash_bytes.h:
 
@@ -982,8 +1154,6 @@ CMakeFiles/engine.dir/src/glad.c.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/ostream.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/hypergeometric.tcc:
-
-/usr/lib64/crtn.o:
 
 /usr/include/features-time64.h:
 
@@ -1071,14 +1241,22 @@ CMakeFiles/engine.dir/src/glad.c.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/basic_file.h:
 
-/lib64/ld-linux-x86-64.so.2:
+/home/lasse/Programming/opengl/src/stb_image.cpp:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/exp_integral.tcc:
+/usr/include/assert.h:
 
-/lib64/libc.so.6:
+/usr/include/bits/local_lim.h:
 
-/usr/include/bits/wordsize.h:
+/usr/include/wchar.h:
 
-/usr/include/stdio.h:
+/usr/include/bits/posix1_lim.h:
 
-/usr/lib64/crti.o:
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/functional_hash.h:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/bits/math-vector.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/basic_ios.h:
+
+/usr/include/bits/uio_lim.h:

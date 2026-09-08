@@ -187,4 +187,6 @@ CMakeFiles/engine.dir/src/main.cpp.o: \
  /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
  /usr/include/bits/stdint-least.h \
  /home/lasse/Programming/opengl/src/../include/GLFW/glfw3.h \
+ /home/lasse/Programming/opengl/src/../include/stb_image.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/stdlib.h \
  /home/lasse/Programming/opengl/src/shader.hpp

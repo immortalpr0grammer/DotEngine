@@ -15,6 +15,10 @@ class shader {
   void setBool(const std::string &name, bool value) const;
   void setInt(const std::string &name, int value) const;
   void setFloat(const std::string &name, float value) const;
+
+  bool getBool(const std::string &name);
+  int getInt(const std::string &name);
+  float getFloat(const std::string &name);
 };
 
 

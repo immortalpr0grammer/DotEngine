@@ -89,3 +89,21 @@ void shader::setInt(const std::string &name, int value) const {
 void shader::setFloat(const std::string &name, float value) const {
  glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
+
+bool shader::getBool(const std::string &name) {
+ int returnValue;
+ glGetUniformiv(ID, glGetUniformLocation(ID, name.c_str()), &returnValue);
+ return (bool)returnValue;
+}
+
+int shader::getInt(const std::string &name) {
+ int returnValue;
+ glGetUniformiv(ID, glGetUniformLocation(ID, name.c_str()), &returnValue);
+ return returnValue;
+}
+
+float shader::getFloat(const std::string &name) {
+ float returnValue;
+ glGetUniformfv(ID, glGetUniformLocation(ID, name.c_str()), &returnValue);
+ return returnValue;
+}

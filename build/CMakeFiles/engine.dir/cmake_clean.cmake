@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/engine.dir/src/main.cpp.o.d"
   "CMakeFiles/engine.dir/src/shader.cpp.o"
   "CMakeFiles/engine.dir/src/shader.cpp.o.d"
+  "CMakeFiles/engine.dir/src/stb_image.cpp.o"
+  "CMakeFiles/engine.dir/src/stb_image.cpp.o.d"
   "engine"
   "engine.pdb"
 )
