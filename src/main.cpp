@@ -1,12 +1,25 @@
 #include <iostream>
 #include <cmath>
+
 #include "../include/glad/glad.h"
 #include "../include/GLFW/glfw3.h"
 #include "../include/stb_image.h"
+
+#include "../include/glm/glm.hpp"
+#include "../include/glm/gtc/matrix_transform.hpp"
+#include "../include/glm/gtc/type_ptr.hpp"
+
 #include "shader.hpp"
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
+
+/* Todos from most important to least important */
+// TODO: continue with learnopengl
+// TODO: improve cooldown system
+
+// Global variables
+float changeColorLastTime = 0.0f;
 
 // To make the window resizable
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
@@ -17,8 +30,9 @@ void processInput(GLFWwindow* window, shader shaderProgram) {
  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
   glfwSetWindowShouldClose(window, true);
  }
- if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS) {
+ if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS && changeColorLastTime < glfwGetTime() - 0.5) {
   shaderProgram.setBool("useInColor", shaderProgram.getBool("useInColor") ^ 1); // Toggles it
+  changeColorLastTime = glfwGetTime();
  }
 }
 
@@ -77,7 +91,7 @@ int main() {
  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
  int textureWidth, textureHeight, nrChannels;
- unsigned char* textureData = stbi_load("textures/wood.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+ unsigned char* textureData = stbi_load("textures/something.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
  if (textureData) {
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData);
   glGenerateMipmap(GL_TEXTURE_2D);
@@ -133,6 +147,13 @@ int main() {
   float time = glfwGetTime();
   float greenValue = (sin(time) / 2.0f) + 0.5f;
   glUniform4f(glGetUniformLocation(shaderProgram.ID, "inColor"), 0.0f, greenValue, 0.0f, 1.0f);
+
+  glm::mat4 trans(1.0f);
+  trans = glm::translate(trans, glm::vec3(sin(glfwGetTime()), 0.0f, 0.0f));
+  trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+  trans = glm::scale(trans, glm::vec3(0.25f, 0.25f, 0.25f));
+
+  glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "transform"), 1, GL_FALSE, glm::value_ptr(trans));
 
   glBindTexture(GL_TEXTURE_2D, texture);
   glBindVertexArray(VAO);

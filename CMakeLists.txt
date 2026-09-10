@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.3.4)
+cmake_minimum_required(VERSION 4.0.0)
 
 project(engine)
 
@@ -8,11 +8,10 @@ target_sources(engine
   PRIVATE
     src/main.cpp
     src/glad.c
-    include/GLFW/glfw3.h
-    include/glad/glad.h
-    src/shader.hpp
     src/shader.cpp
+    src/shader.hpp
     src/stb_image.cpp
+    include
 )
 
 target_link_libraries(engine
