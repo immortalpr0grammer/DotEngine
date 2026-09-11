@@ -6,7 +6,8 @@ Idk if it will get far and for what i will use it.
 - Cmake installed
 # How to build this project
 ## On linux
-do `cmake --build build` from the root of the project.
+Do `cmake -S . -B build` and then `cmake --build build` from the root of the project.  
+After that you can rebuild with `cmake --build build` if you made your own changes.
 ## On windows
 idk also do something with cmake but idk how stuff works on windows.
 # How to run it
