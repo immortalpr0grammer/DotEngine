@@ -1,3 +1,0 @@
-/home/lasse/Programming/opengl/build/CMakeFiles/engine.dir
-/home/lasse/Programming/opengl/build/CMakeFiles/edit_cache.dir
-/home/lasse/Programming/opengl/build/CMakeFiles/rebuild_cache.dir
