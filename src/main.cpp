@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <unistd.h>
 
 #include "../include/glad/glad.h"
 #include "../include/GLFW/glfw3.h"
@@ -65,15 +66,64 @@ GLFWwindow* initEngine(int windowWidth, int windowHeight, char *windowName) {
 }
 
 const float vertices[] = {
--0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  0.0f, 0.0f, // Bottom left
--0.5f, 0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  0.0f, 1.0f, // Top left
-0.5f, -0.5f, 0.0f,  0.0f, 0.0f, 1.0f,  1.0f, 0.0f, // Bottom right
-0.5f, 0.5f, 0.0f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f // Top right
+// This doesnt use indices cause its just for testing
+-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+ 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+ 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+ 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+ 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+ 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+ 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+ 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+};
+
+glm::vec3 cubePositions[] = {
+glm::vec3( 0.0f, 0.0f, 0.0f),
+glm::vec3( 2.0f, 5.0f, -15.0f),
+glm::vec3(-1.5f, -2.2f, -2.5f),
+glm::vec3(-3.8f, -2.0f, -12.3f),
+glm::vec3( 2.4f, -0.4f, -3.5f),
+glm::vec3(-1.7f, 3.0f, -7.5f),
+glm::vec3( 1.3f, -2.0f, -2.5f),
+glm::vec3( 1.5f, 2.0f, -2.5f),
+glm::vec3( 1.5f, 0.2f, -1.5f),
+glm::vec3(-1.3f, 1.0f, -1.5f)
 };
 
 const uint indices[] = {
-0, 1, 2,
-1, 2, 3
 };
 
 int main() {
@@ -91,9 +141,9 @@ int main() {
  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
  int textureWidth, textureHeight, nrChannels;
- unsigned char* textureData = stbi_load("textures/something.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+ unsigned char* textureData = stbi_load("textures/crate.png", &textureWidth, &textureHeight, &nrChannels, 0);
  if (textureData) {
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
   glGenerateMipmap(GL_TEXTURE_2D);
  }
  else {
@@ -118,29 +168,29 @@ int main() {
  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
  // Position attribute
- glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
+ glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
  glEnableVertexAttribArray(0);
- // Color attribute
- glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(3 * sizeof(float)));
- glEnableVertexAttribArray(1);
  // Texture coordinates attribute
- glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(6 * sizeof(float)));
- glEnableVertexAttribArray(2);
+ glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+ glEnableVertexAttribArray(1);
 
  shader shaderProgram("shaders/vertex.sha", "shaders/fragment.sha");
 
  shaderProgram.use();
 
  shaderProgram.setInt("inTexture", 0);
- shaderProgram.setBool("useInTexture", true);
 
  shaderProgram.setBool("useInColor", false);
 
+ glEnable(GL_DEPTH_TEST);
+
+ glBindVertexArray(VAO);
+ glBindTexture(GL_TEXTURE_2D, texture);
  while (!glfwWindowShouldClose(window)) {
   processInput(window, shaderProgram);
 
   glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   shaderProgram.use();
 
@@ -148,16 +198,26 @@ int main() {
   float greenValue = (sin(time) / 2.0f) + 0.5f;
   glUniform4f(glGetUniformLocation(shaderProgram.ID, "inColor"), 0.0f, greenValue, 0.0f, 1.0f);
 
-  glm::mat4 trans(1.0f);
-  trans = glm::translate(trans, glm::vec3(sin(glfwGetTime()), 0.0f, 0.0f));
-  trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-  trans = glm::scale(trans, glm::vec3(0.25f, 0.25f, 0.25f));
+  glm::mat4 projection;
+  projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+  glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-  glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "transform"), 1, GL_FALSE, glm::value_ptr(trans));
+  glm::mat4 view(1.0f);
+  view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+  glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
-  glBindTexture(GL_TEXTURE_2D, texture);
-  glBindVertexArray(VAO);
-  glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(float), GL_UNSIGNED_INT, 0);
+  for (uint i = 0; i < 10; i++) {
+   glm::mat4 model(1.0f);
+   model = glm::translate(model, cubePositions[i] + glm::vec3(sin(glfwGetTime()) * 3, 0.0f, 0.0f));
+   model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(1.0f, 0.5f, 0.0f));
+   glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+   glDrawArrays(GL_TRIANGLES, 0 , 36);
+  }
+
+
+  // Commented, cause for testing purposes indices arent being used
+  // glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(float), GL_UNSIGNED_INT, 0);
 
   glfwSwapBuffers(window);
   glfwPollEvents();
