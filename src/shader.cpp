@@ -33,7 +33,7 @@ shader::shader(const char* vertexPath, const char* fragmentPath) {
  const char *vertexShaderSource = vertexCode.c_str();
  const char *fragmentShaderSource = fragmentCode.c_str();
 
- uint vertexShader;
+ unsigned int vertexShader;
  vertexShader = glCreateShader(GL_VERTEX_SHADER);
  glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
  glCompileShader(vertexShader);
@@ -46,7 +46,7 @@ shader::shader(const char* vertexPath, const char* fragmentPath) {
   std::cout << "Vertex shader compilation error:\n" << infolog;
  }
 
- uint fragmentShader;
+ unsigned int fragmentShader;
  fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
  glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
  glCompileShader(fragmentShader);

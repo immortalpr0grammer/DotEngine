@@ -8,6 +8,8 @@ target_sources(engine
   PRIVATE
     src/main.cpp
     src/glad.c
+    src/texture.cpp
+    src/texture.hpp
     src/shader.cpp
     src/shader.hpp
     src/stb_image.cpp
