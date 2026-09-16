@@ -12,6 +12,8 @@ target_sources(engine
     src/texture.hpp
     src/shader.cpp
     src/shader.hpp
+    src/camera.cpp
+    src/camera.hpp
     src/stb_image.cpp
     include
 )

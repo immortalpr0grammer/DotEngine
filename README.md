@@ -15,3 +15,4 @@ run build/engine in your terminal from the root of the project.
 - Move around: `WASD`
 - Look around: `mouse`
 - Zoom in and out: `scrollwheel`
+- Go faster: `shift`

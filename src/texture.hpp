@@ -1,7 +1,7 @@
-#include <iostream>
-
 #ifndef TEXTURE_H_
 #define TEXTURE_H_
+
+#include <iostream>
 
 class texture {
  public:

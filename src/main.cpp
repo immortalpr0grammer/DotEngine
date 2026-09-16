@@ -12,6 +12,7 @@
 
 #include "shader.hpp"
 #include "texture.hpp"
+#include "camera.hpp"
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -19,6 +20,7 @@
 /* Todos from most important to least important */
 // TODO: continue with learnopengl
 // TODO: improve cooldown system
+// TODO: add windows support by not having the glfw library be only for linux
 
 // Global variables
 float changeColorLastTime = 0.0f;
@@ -81,14 +83,11 @@ glm::vec3( 1.5f, 0.2f, -1.5f),
 glm::vec3(-1.3f, 1.0f, -1.5f)
 };
 
-const unsigned int indices[] = {
-};
+/*const unsigned int indices[] = {
+};*/
 
-glm::vec3 cameraPosition(0.0f, 0.0f, -1.0f);
-glm::vec3 cameraFront(0.0f, 0.0f, -1.0f); // Normalized
-glm::vec3 cameraUp(0.0f, 1.0f, 0.0f);
+camera cam(glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
-float yaw = 0.0f, pitch = 0.0f;
 float FOV = 45.0f;
 
 float deltaTime = 0.0f;
@@ -119,22 +118,10 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
  xOffset *= sensitivity;
  yOffset *= sensitivity;
 
- yaw += xOffset;
- pitch += yOffset;
+ float yaw = xOffset;
+ float pitch = yOffset;
 
- if (pitch > 89.0f) {
-  pitch = 89.0f;
- }
- else if (pitch < -89.0f) {
-  pitch = -89.0f;
- }
-
- // Some math stuff for turning the camera that i copy pasted cause i dont understand it for shits sake
- glm::vec3 direction;
- direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
- direction.y = sin(glm::radians(pitch));
- direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
- cameraFront = glm::normalize(direction);
+ cam.turn(yaw, pitch);
 }
 
 
@@ -160,16 +147,16 @@ void processInput(GLFWwindow* window, shader shaderProgram) {
   cameraSpeed *= 2;
  }
  if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-  cameraPosition += cameraSpeed * cameraFront;
+  cam.forward(cameraSpeed);
  }
  if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-  cameraPosition -= cameraSpeed * cameraFront;
+  cam.backward(cameraSpeed);
  }
  if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-  cameraPosition -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+  cam.left(cameraSpeed);
  }
  if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-  cameraPosition += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+  cam.right(cameraSpeed);
  }
 }
 
@@ -202,7 +189,6 @@ GLFWwindow* initEngine(int windowWidth, int windowHeight, char *windowName) {
  glfwSetCursorPosCallback(window, mouse_callback);
  glfwSetScrollCallback(window, scroll_callback);
 
-
  return window;
 }
 
@@ -219,10 +205,10 @@ int main() {
  glBindVertexArray(VAO);
 
  // EBO stores indices to not have multiple of the same vertices
- unsigned int EBO;
+ /*unsigned int EBO;
  glGenBuffers(1, &EBO);
  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
- glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+ glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);*/
 
  unsigned int VBO;
  glGenBuffers(1, &VBO);
@@ -271,9 +257,10 @@ int main() {
   projection = glm::perspective(glm::radians(FOV), 800.0f / 600.0f, 0.1f, 100.0f);
   glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-
+  /*glm::mat4 view;
+  view = glm::lookAt(cameraPosition, cameraPosition + cameraFront, cameraUp);*/
   glm::mat4 view;
-  view = glm::lookAt(cameraPosition, cameraPosition + cameraFront, cameraUp);
+  view = cam.getViewMatrix();
   glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
   for (unsigned int i = 0; i < 10; i++) {
