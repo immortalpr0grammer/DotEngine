@@ -3,7 +3,12 @@
 #include <unistd.h>
 
 #include "../include/glad/glad.h"
-#include "../include/GLFW/glfw3.h"
+#ifdef _WIN32
+ #include "../include/GLFW/windows/glfw3.h"
+#else
+ #include "../include/GLFW/linux/glfw3.h"
+#endif
+
 #include "../include/stb_image.h"
 
 #include "../include/glm/glm.hpp"
@@ -13,6 +18,7 @@
 #include "shader.hpp"
 #include "texture.hpp"
 #include "camera.hpp"
+#include "object.hpp"
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -20,7 +26,7 @@
 /* Todos from most important to least important */
 // TODO: continue with learnopengl
 // TODO: improve cooldown system
-// TODO: add windows support by not having the glfw library be only for linux
+// TODO: add windows support by not having the glfw library be only for linux with #ifdef __linux__ and #elif _WIN32
 
 // Global variables
 float changeColorLastTime = 0.0f;
@@ -200,20 +206,11 @@ int main() {
  texture crate("textures/crate.png", 0);
 
  // VAO stores stuff like vertexattribpointers
- unsigned int VAO;
- glGenVertexArrays(1, &VAO);
- glBindVertexArray(VAO);
+ VAO crateVAO;
+ crateVAO.bind();
 
- // EBO stores indices to not have multiple of the same vertices
- /*unsigned int EBO;
- glGenBuffers(1, &EBO);
- glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
- glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);*/
-
- unsigned int VBO;
- glGenBuffers(1, &VBO);
- glBindBuffer(GL_ARRAY_BUFFER, VBO);
- glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+ VBO crateVBO(vertices, sizeof(vertices), GL_STATIC_DRAW);
+ crateVBO.bind();
 
  // Position attribute
  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
@@ -232,11 +229,10 @@ int main() {
 
  glEnable(GL_DEPTH_TEST);
 
- glBindVertexArray(VAO);
+ crateVAO.bind();
  crate.bind2D();
 
  double timeSinceLastSecond = 0.0;
-
 
  while (!glfwWindowShouldClose(window)) {
   float currentFrame = glfwGetTime();
@@ -257,8 +253,6 @@ int main() {
   projection = glm::perspective(glm::radians(FOV), 800.0f / 600.0f, 0.1f, 100.0f);
   glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-  /*glm::mat4 view;
-  view = glm::lookAt(cameraPosition, cameraPosition + cameraFront, cameraUp);*/
   glm::mat4 view;
   view = cam.getViewMatrix();
   glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));

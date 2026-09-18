@@ -14,11 +14,20 @@ target_sources(engine
     src/shader.hpp
     src/camera.cpp
     src/camera.hpp
+    src/object.cpp
+    src/object.hpp
     src/stb_image.cpp
     include
 )
 
+if (WIN32)
 target_link_libraries(engine
   PRIVATE
-    ${CMAKE_SOURCE_DIR}/lib/libglfw3.a
+    ${CMAKE_SOURCE_DIR}/lib/windows/glfw3.lib
 )
+else()
+target_link_libraries(engine
+  PRIVATE
+   ${CMAKE_SOURCE_DIR}/lib/linux/libglfw3.a
+)
+endif()
