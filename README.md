@@ -6,11 +6,16 @@ Idk if it will get far and for what i will use it.
 - Cmake installed
 # How to build this project
 Do `cmake -S . -B build` and then `cmake --build build` from the root of the project.  
-After that you can rebuild with `cmake --build build` if you made your own changes.
+After that you can rebuild with `cmake --build build` if you made your own changes.  
+Should work for all operating systems as long as cmake works
 # How to run it
-run build/engine in your terminal from the root of the project.
+## linux
+run `build/engine` in your terminal from the root of the project.
+## windows
+run `start build/debug/engine.exe` in your terminal from the root of the project.
 # Keybinds
 - Exit: `esc`
+- Unfocus mouse: `tab`
 - Change between color modes: `enter`
 - Move around: `WASD`
 - Look around: `mouse`

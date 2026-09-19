@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <unistd.h>
 
 #include "../include/glad/glad.h"
 #ifdef _WIN32
@@ -24,12 +23,13 @@
 #define WINDOW_HEIGHT 600
 
 /* Todos from most important to least important */
+// TODO: make an engine class that handles most of the stuff
 // TODO: continue with learnopengl
 // TODO: improve cooldown system
-// TODO: add windows support by not having the glfw library be only for linux with #ifdef __linux__ and #elif _WIN32
 
 // Global variables
 float changeColorLastTime = 0.0f;
+float changeCursorModeLastTime = 0.0f;
 
 const float vertices[] = {
 // This doesnt use indices cause its just for testing
@@ -102,6 +102,7 @@ float lastFrame = 0.0f;
 float lastX = 400, lastY = 300;
 float sensitivity = 0.1f;
 bool firstMouse = true;
+bool mouseActive = true;
 
 
 // To make the window resizable
@@ -110,6 +111,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 }
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
+ if (!mouseActive) {return;}
  if (firstMouse) {
   lastX = xpos;
   lastY = ypos;
@@ -146,6 +148,17 @@ void processInput(GLFWwindow* window, shader shaderProgram) {
  if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS && changeColorLastTime < glfwGetTime() - 0.5) {
   shaderProgram.setBool("useInColor", shaderProgram.getBool("useInColor") ^ 1); // Toggles it
   changeColorLastTime = glfwGetTime();
+ }
+
+ if (glfwGetKey(window, GLFW_KEY_TAB) == GLFW_PRESS && changeCursorModeLastTime < glfwGetTime() - 0.5) {
+  mouseActive ^= 1;
+  changeCursorModeLastTime = glfwGetTime();
+  if (glfwGetInputMode(window, GLFW_CURSOR) == GLFW_CURSOR_NORMAL) {
+   glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+  }
+  else {
+   glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+  }
  }
 
  float cameraSpeed = 2.5f * deltaTime;
