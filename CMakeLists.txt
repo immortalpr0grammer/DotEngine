@@ -7,16 +7,26 @@ add_executable(engine)
 target_sources(engine
   PRIVATE
     src/main.cpp
+
     src/glad.c
+
     src/texture.cpp
     src/texture.hpp
+
     src/shader.cpp
     src/shader.hpp
+
     src/camera.cpp
     src/camera.hpp
+
     src/object.cpp
     src/object.hpp
+
+    src/engine.cpp
+    src/engine.hpp
+
     src/stb_image.cpp
+
     include
 )
 
