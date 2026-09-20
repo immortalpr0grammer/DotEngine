@@ -55,13 +55,9 @@ void engine::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
      FOV = 45.0f;
 }
 
-void engine::processInput(GLFWwindow* window, shader shaderProgram) {
+void engine::processInput(GLFWwindow* window) {
  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
   glfwSetWindowShouldClose(window, true);
- }
- if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS && changeColorLastTime < glfwGetTime() - 0.5) {
-  shaderProgram.setBool("useInColor", shaderProgram.getBool("useInColor") ^ 1); // Toggles it
-  changeColorLastTime = glfwGetTime();
  }
 
  if (glfwGetKey(window, GLFW_KEY_TAB) == GLFW_PRESS && changeCursorModeLastTime < glfwGetTime() - 0.5) {

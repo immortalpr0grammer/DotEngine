@@ -88,9 +88,11 @@ glm::vec3( 1.5f, 0.2f, -1.5f),
 glm::vec3(-1.3f, 1.0f, -1.5f)
 };
 
+glm::vec3 lightPos(0.0f, 1.0f, -5.0f);
+
 glm::vec3 cubeMovementGoals[10];
 
-int cubesADHD = 2;
+int cubesADHD = 0;
 
 /*const unsigned int indices[] = {
 };*/
@@ -103,7 +105,6 @@ int main() {
 
  texture crate("textures/crate.png", 0);
 
- // VAO stores stuff like vertexattribpointers
  VAO crateVAO;
  crateVAO.bind();
 
@@ -117,17 +118,21 @@ int main() {
  glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
  glEnableVertexAttribArray(1);
 
- shader shaderProgram("shaders/vertex.sha", "shaders/fragment.sha");
+ VAO lightVAO;
+ lightVAO.bind();
 
- shaderProgram.use();
+ // Position attribute
+ glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+ glEnableVertexAttribArray(0);
+ // Texture coordinates attribute
+ glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+ glEnableVertexAttribArray(1);
 
- shaderProgram.setInt("inTexture", crate.ID);
-
- shaderProgram.setBool("useInColor", false);
+ shader lightingShader("shaders/lighting.vert", "shaders/lighting.frag");
+ shader lightSourceShader("shaders/lightSource.vert", "shaders/lightSource.frag");
 
  glEnable(GL_DEPTH_TEST);
 
- crateVAO.bind();
  crate.bind2D();
 
  double timeSinceLastSecond = 0.0;
@@ -140,35 +145,46 @@ int main() {
   float currentFrame = glfwGetTime();
   engine::deltaTime = currentFrame - engine::lastFrame;
 
-  engine::processInput(window, shaderProgram);
+  engine::processInput(window);
 
-  glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
+  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  shaderProgram.use();
+  lightingShader.use();
+  lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
+  lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
 
-  float time = glfwGetTime();
-  float greenValue = (sin(time) / 2.0f) + 0.5f;
-  glUniform4f(glGetUniformLocation(shaderProgram.ID, "inColor"), 0.0f, greenValue, 0.0f, 1.0f);
+  crateVAO.bind();
 
   glm::mat4 projection;
   projection = glm::perspective(glm::radians(engine::FOV), 800.0f / 600.0f, 0.1f, 100.0f);
-  glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+  glUniformMatrix4fv(glGetUniformLocation(lightingShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
   glm::mat4 view;
   view = engine::cam.getViewMatrix();
-  glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+  glUniformMatrix4fv(glGetUniformLocation(lightingShader.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
   for (unsigned int i = 0; i < 10; i++) {
    cubePositions[i] += cubeMovementGoals[i] * engine::deltaTime;
 
    glm::mat4 model(1.0f);
    model = glm::translate(model, cubePositions[i]);
-   model = glm::rotate(model, glm::radians(50.0f), glm::vec3(1.0f, 0.5f, 0.0f));
-   glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+   glUniformMatrix4fv(glGetUniformLocation(lightingShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
    glDrawArrays(GL_TRIANGLES, 0 , 36);
   }
+
+  lightSourceShader.use();
+  lightVAO.bind();
+
+  glUniformMatrix4fv(glGetUniformLocation(lightSourceShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+  glUniformMatrix4fv(glGetUniformLocation(lightSourceShader.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+  glm::mat4 model(1.0f);
+  model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+  model = glm::translate(model, lightPos);
+  glUniformMatrix4fv(glGetUniformLocation(lightSourceShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+  glDrawArrays(GL_TRIANGLES, 0, 36);
 
   // Commented, cause for testing purposes indices arent being used
   // glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(float), GL_UNSIGNED_INT, 0);

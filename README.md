@@ -16,7 +16,6 @@ run `start build/debug/engine.exe` in your terminal from the root of the project
 # Keybinds
 - Exit: `esc`
 - Unfocus mouse: `tab`
-- Change between color modes: `enter`
 - Move around: `WASD`
 - Look around: `mouse`
 - Zoom in and out: `scrollwheel`

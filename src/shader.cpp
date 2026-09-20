@@ -90,6 +90,10 @@ void shader::setFloat(const std::string &name, float value) const {
  glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
 
+void shader::setVec3(const std::string &name, float x, float y, float z) const {
+ glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z);
+}
+
 bool shader::getBool(const std::string &name) {
  int returnValue;
  glGetUniformiv(ID, glGetUniformLocation(ID, name.c_str()), &returnValue);

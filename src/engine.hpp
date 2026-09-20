@@ -35,7 +35,7 @@ namespace engine {
 
  void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
- void processInput(GLFWwindow* window, shader shaderProgram);
+ void processInput(GLFWwindow* window);
 
  GLFWwindow* initEngine(int windowWidth, int windowHeight, char *windowName);
 
