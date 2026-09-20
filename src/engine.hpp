@@ -39,6 +39,7 @@ namespace engine {
 
  GLFWwindow* initEngine(int windowWidth, int windowHeight, char *windowName);
 
+ int random(int min, int max);
 }
 
 #endif // ENGINE_H_

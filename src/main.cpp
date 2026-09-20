@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <random>
 
 #include "../include/glad/glad.h"
 #ifdef _WIN32
@@ -87,10 +88,16 @@ glm::vec3( 1.5f, 0.2f, -1.5f),
 glm::vec3(-1.3f, 1.0f, -1.5f)
 };
 
+glm::vec3 cubeMovementGoals[10];
+
+int cubesADHD = 2;
+
 /*const unsigned int indices[] = {
 };*/
 
 int main() {
+ srand((unsigned int)time(0));
+
  std::cout << "\n";
  GLFWwindow* window = engine::initEngine(WINDOW_WIDTH, WINDOW_HEIGHT, (char*)"engine");
 
@@ -125,6 +132,10 @@ int main() {
 
  double timeSinceLastSecond = 0.0;
 
+ for (unsigned int i = 0; i < 10; i++) {
+  cubeMovementGoals[i] = glm::vec3(engine::random(-(cubesADHD / 2), cubesADHD / 2), engine::random(-(cubesADHD / 2), cubesADHD / 2), engine::random(-(cubesADHD / 2), cubesADHD / 2));
+ }
+
  while (!glfwWindowShouldClose(window)) {
   float currentFrame = glfwGetTime();
   engine::deltaTime = currentFrame - engine::lastFrame;
@@ -149,6 +160,8 @@ int main() {
   glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
   for (unsigned int i = 0; i < 10; i++) {
+   cubePositions[i] += cubeMovementGoals[i] * engine::deltaTime;
+
    glm::mat4 model(1.0f);
    model = glm::translate(model, cubePositions[i]);
    model = glm::rotate(model, glm::radians(50.0f), glm::vec3(1.0f, 0.5f, 0.0f));
@@ -168,6 +181,10 @@ int main() {
    std::cout << "FPS: " << 1 / engine::deltaTime << "\n";
    std::cout << "frameTime: " << engine::deltaTime << "\n";
    timeSinceLastSecond -= 1.0;
+
+   for (unsigned int i = 0; i < 10; i++) {
+    cubeMovementGoals[i] = glm::vec3(engine::random(-(cubesADHD / 2), cubesADHD / 2), engine::random(-(cubesADHD / 2), cubesADHD / 2), engine::random(-(cubesADHD / 2), cubesADHD / 2));
+   }
   }
   engine::lastFrame = currentFrame;
  }

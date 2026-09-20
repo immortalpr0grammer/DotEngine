@@ -1,6 +1,7 @@
 #include "engine.hpp"
 #include <iostream>
 
+
 /* Global variables */
 float engine::changeColorLastTime = 0.0f;
 float engine::changeCursorModeLastTime = 0.0f;
@@ -122,4 +123,8 @@ GLFWwindow* engine::initEngine(int windowWidth, int windowHeight, char *windowNa
  glfwSetScrollCallback(window, scroll_callback);
 
  return window;
+}
+
+int engine::random(int min, int max) {
+ return rand()%(max-min + 1) + min;
 }
