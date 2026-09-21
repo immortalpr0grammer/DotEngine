@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <random>
 
 #include "../include/glad/glad.h"
 #ifdef _WIN32
@@ -31,48 +30,47 @@
 // Global variables
 
 const float vertices[] = {
-// This doesnt use indices cause its just for testing
--0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
- 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
- 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
- 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
--0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
--0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
--0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
- 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
- 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
- 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
--0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
--0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
 
--0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
--0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
--0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
--0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
--0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
--0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 
- 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
- 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
- 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
- 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
- 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
- 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
--0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
- 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
- 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
- 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
--0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
--0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
 
--0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
- 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
- 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
- 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
--0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
--0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 };
 
 glm::vec3 cubePositions[] = {
@@ -112,21 +110,18 @@ int main() {
  crateVBO.bind();
 
  // Position attribute
- glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+ glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
  glEnableVertexAttribArray(0);
- // Texture coordinates attribute
- glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+ // Normal attribute
+ glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)(3 * sizeof(float)));
  glEnableVertexAttribArray(1);
 
  VAO lightVAO;
  lightVAO.bind();
 
  // Position attribute
- glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+ glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
  glEnableVertexAttribArray(0);
- // Texture coordinates attribute
- glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
- glEnableVertexAttribArray(1);
 
  shader lightingShader("shaders/lighting.vert", "shaders/lighting.frag");
  shader lightSourceShader("shaders/lightSource.vert", "shaders/lightSource.frag");
@@ -150,7 +145,11 @@ int main() {
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+  glm::vec3 movingLightPos = lightPos + glm::vec3(sin(glfwGetTime()) * 3, 0.0f, 0.0f);
+
   lightingShader.use();
+  lightingShader.setVec3("viewPos", engine::cam.position);
+  lightingShader.setVec3("lightPos", movingLightPos);
   lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
   lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
 
@@ -181,7 +180,7 @@ int main() {
   glUniformMatrix4fv(glGetUniformLocation(lightSourceShader.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
   glm::mat4 model(1.0f);
   model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
-  model = glm::translate(model, lightPos);
+  model = glm::translate(model, movingLightPos);
   glUniformMatrix4fv(glGetUniformLocation(lightSourceShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
   glDrawArrays(GL_TRIANGLES, 0, 36);
