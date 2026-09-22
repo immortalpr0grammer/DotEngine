@@ -23,10 +23,6 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 
-/* Todos from most important to least important */
-// TODO: continue with learnopengl
-// TODO: improve cooldown system
-
 // Global variables
 
 const float vertices[] = {
@@ -142,16 +138,24 @@ int main() {
 
   engine::processInput(window);
 
-  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+  glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glm::vec3 movingLightPos = lightPos + glm::vec3(sin(glfwGetTime()) * 3, 0.0f, 0.0f);
+  glm::vec3 lightColor(sin(glfwGetTime() * 0.43f), sin(glfwGetTime() * 0.1f), sin(glfwGetTime() * 0.63f));
 
   lightingShader.use();
   lightingShader.setVec3("viewPos", engine::cam.position);
-  lightingShader.setVec3("lightPos", movingLightPos);
   lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
-  lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+  lightingShader.setVec3("lightColor", lightColor);
+  lightingShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
+  lightingShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+  lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+  lightingShader.setFloat("material.shininess", 32.0f);
+  lightingShader.setVec3("light.position", movingLightPos);
+  lightingShader.setVec3("light.ambient",  lightColor * glm::vec3(0.2f));
+  lightingShader.setVec3("light.diffuse",  lightColor * glm::vec3(0.5f));
+  lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
 
   crateVAO.bind();
 
@@ -174,6 +178,7 @@ int main() {
   }
 
   lightSourceShader.use();
+  lightSourceShader.setVec3("color", lightColor);
   lightVAO.bind();
 
   glUniformMatrix4fv(glGetUniformLocation(lightSourceShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
