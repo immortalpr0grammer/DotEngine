@@ -26,48 +26,55 @@
 // Global variables
 
 const float vertices[] = {
--0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
--0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
--0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+// Back face
+-0.5f, -0.5f, -0.5f,  0.0f, 0.0f, -1.0f,  0.0f, 0.0f,
+0.5f, -0.5f, -0.5f,  0.0f, 0.0f, -1.0f,  1.0f, 0.0f,
+0.5f,  0.5f, -0.5f,  0.0f, 0.0f, -1.0f,  1.0f, 1.0f,
+0.5f,  0.5f, -0.5f,  0.0f, 0.0f, -1.0f,  1.0f, 1.0f,
+-0.5f,  0.5f, -0.5f,  0.0f, 0.0f, -1.0f,  0.0f, 1.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, 0.0f, -1.0f,  0.0f, 0.0f,
 
--0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
--0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
--0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+// Front face
+-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  0.0f, 0.0f,
+0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 0.0f,
+0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f,
+0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f,
+-0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  0.0f, 1.0f,
+-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  0.0f, 0.0f,
 
--0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
--0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
--0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
--0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
--0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
--0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+// Left face
+-0.5f,  0.5f,  0.5f, -1.0f, 0.0f, 0.0f,  1.0f, 1.0f,
+-0.5f,  0.5f, -0.5f, -1.0f, 0.0f, 0.0f,  0.0f, 1.0f,
+-0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f,  0.0f, 0.0f,
+-0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f,  0.0f, 0.0f,
+-0.5f, -0.5f,  0.5f, -1.0f, 0.0f, 0.0f,  1.0f, 0.0f,
+-0.5f,  0.5f,  0.5f, -1.0f, 0.0f, 0.0f,  1.0f, 1.0f,
 
-0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+// Right face
+0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 1.0f,
+0.5f,  0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  1.0f, 1.0f,
+0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  1.0f, 0.0f,
+0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  1.0f, 0.0f,
+0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 0.0f,
+0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 1.0f,
 
--0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
--0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
--0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+// Bottom face
+-0.5f, -0.5f, -0.5f,  0.0f, -1.0f, 0.0f,  0.0f, 1.0f,
+0.5f, -0.5f, -0.5f,  0.0f, -1.0f, 0.0f,  1.0f, 1.0f,
+0.5f, -0.5f,  0.5f,  0.0f, -1.0f, 0.0f,  1.0f, 0.0f,
+0.5f, -0.5f,  0.5f,  0.0f, -1.0f, 0.0f,  1.0f, 0.0f,
+-0.5f, -0.5f,  0.5f,  0.0f, -1.0f, 0.0f,  0.0f, 0.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, -1.0f, 0.0f,  0.0f, 1.0f,
 
--0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
--0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
--0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+// Top face
+-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f,
+0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 1.0f,
+0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 1.0f,
+-0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f
 };
+
 
 glm::vec3 cubePositions[] = {
 glm::vec3( 0.0f, 0.0f, 0.0f),
@@ -97,7 +104,8 @@ int main() {
  std::cout << "\n";
  GLFWwindow* window = engine::initEngine(WINDOW_WIDTH, WINDOW_HEIGHT, (char*)"engine");
 
- texture crate("textures/crate.png", 0);
+ texture crate("textures/crate2.png", 0);
+ texture crateSpecular("textures/crate2Specular.png", 1);
 
  VAO crateVAO;
  crateVAO.bind();
@@ -106,17 +114,20 @@ int main() {
  crateVBO.bind();
 
  // Position attribute
- glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
+ glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
  glEnableVertexAttribArray(0);
  // Normal attribute
- glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)(3 * sizeof(float)));
+ glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(3 * sizeof(float)));
  glEnableVertexAttribArray(1);
+ // Texture coordinates attribute
+ glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(6 * sizeof(float)));
+ glEnableVertexAttribArray(2);
 
  VAO lightVAO;
  lightVAO.bind();
 
  // Position attribute
- glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
+ glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
  glEnableVertexAttribArray(0);
 
  shader lightingShader("shaders/lighting.vert", "shaders/lighting.frag");
@@ -125,6 +136,7 @@ int main() {
  glEnable(GL_DEPTH_TEST);
 
  crate.bind2D();
+ crateSpecular.bind2D();
 
  double timeSinceLastSecond = 0.0;
 
@@ -142,20 +154,23 @@ int main() {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glm::vec3 movingLightPos = lightPos + glm::vec3(sin(glfwGetTime()) * 3, 0.0f, 0.0f);
-  glm::vec3 lightColor(sin(glfwGetTime() * 0.43f), sin(glfwGetTime() * 0.1f), sin(glfwGetTime() * 0.63f));
+  glm::vec3 lightColor(
+   sin(glfwGetTime() * 0.43f) * 0.5f + 0.5f,
+   sin(glfwGetTime() * 0.1f) * 0.5f + 0.5f,
+   sin(glfwGetTime() * 0.63f) * 0.5f + 0.5f
+  );
 
   lightingShader.use();
   lightingShader.setVec3("viewPos", engine::cam.position);
-  lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
-  lightingShader.setVec3("lightColor", lightColor);
-  lightingShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
-  lightingShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
-  lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
-  lightingShader.setFloat("material.shininess", 32.0f);
+  lightingShader.setVec3("objectColor", 1.0f, 1.0f, 1.0f);
+  lightingShader.setInt("material.diffuse", 0);
+  lightingShader.setInt("material.specular", 1);
+  lightingShader.setFloat("material.shininess", 64.0f);
   lightingShader.setVec3("light.position", movingLightPos);
   lightingShader.setVec3("light.ambient",  lightColor * glm::vec3(0.2f));
   lightingShader.setVec3("light.diffuse",  lightColor * glm::vec3(0.5f));
   lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+  lightingShader.setFloat("light.maxRange", 20.0f);
 
   crateVAO.bind();
 

@@ -28,5 +28,6 @@ texture::texture(const char *path, unsigned int targetID) {
 }
 
 void texture::bind2D() {
+ glActiveTexture(GL_TEXTURE0 + ID);
  glBindTexture(GL_TEXTURE_2D, textureID);
 }
