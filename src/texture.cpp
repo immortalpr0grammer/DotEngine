@@ -17,7 +17,12 @@ texture::texture(const char *path, unsigned int targetID) {
  int textureWidth, textureHeight, nrChannels;
  unsigned char* textureData = stbi_load(path, &textureWidth, &textureHeight, &nrChannels, 0);
  if (textureData) {
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
+  if (nrChannels == 4) {
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
+  }
+  else {
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData);
+  }
   glGenerateMipmap(GL_TEXTURE_2D);
  }
  else {

@@ -13,8 +13,9 @@
 #include "camera.hpp"
 
 namespace engine {
- extern float changeColorLastTime;
  extern float changeCursorModeLastTime;
+ extern float reloadTexturesLastTime;
+ extern float toggleFlashLightLastTime;
 
  extern camera cam;
 
@@ -35,7 +36,7 @@ namespace engine {
 
  void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
- void processInput(GLFWwindow* window);
+ void processInput(GLFWwindow* window, shader* lightingShader);
 
  GLFWwindow* initEngine(int windowWidth, int windowHeight, char *windowName);
 

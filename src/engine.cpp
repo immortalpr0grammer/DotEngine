@@ -3,8 +3,9 @@
 
 
 /* Global variables */
-float engine::changeColorLastTime = 0.0f;
 float engine::changeCursorModeLastTime = 0.0f;
+float engine::reloadTexturesLastTime = 0.0f;
+float engine::toggleFlashLightLastTime = 0.0f;
 
 camera engine::cam = camera(glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
@@ -55,7 +56,7 @@ void engine::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
      FOV = 45.0f;
 }
 
-void engine::processInput(GLFWwindow* window) {
+void engine::processInput(GLFWwindow* window, shader* lightingShader) {
  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
   glfwSetWindowShouldClose(window, true);
  }
@@ -69,6 +70,16 @@ void engine::processInput(GLFWwindow* window) {
   else {
    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
   }
+ }
+
+ if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS && reloadTexturesLastTime < glfwGetTime() - 1.0) {
+  reloadTexturesLastTime = glfwGetTime();
+  lightingShader->reload();
+ }
+
+ if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS && toggleFlashLightLastTime < glfwGetTime() - 0.5) {
+  toggleFlashLightLastTime = glfwGetTime();
+  lightingShader->setBool("ignoreSpotLight", !lightingShader->getBool("ignoreSpotLight"));
  }
 
  float cameraSpeed = 2.5f * deltaTime;
@@ -104,7 +115,7 @@ GLFWwindow* engine::initEngine(int windowWidth, int windowHeight, char *windowNa
  }
 
  glfwMakeContextCurrent(window);
- glfwSwapInterval(0); // Removing the 60 fps limit
+ glfwSwapInterval(0); // Vsync
  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // Making the cursor invisible in center when application has focus
 
  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
