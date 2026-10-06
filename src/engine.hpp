@@ -4,9 +4,9 @@
 
 #include "../include/glad/glad.h"
 #ifdef _WIN32
- #include "../include/GLFW/windows/glfw3.h"
+ #include "../include/windows/GLFW/glfw3.h"
 #else
- #include "../include/GLFW/linux/glfw3.h"
+ #include "../include/linux/GLFW/glfw3.h"
 #endif
 
 #include "shader.hpp"

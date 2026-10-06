@@ -3,9 +3,9 @@
 
 #include "../include/glad/glad.h"
 #ifdef _WIN32
- #include "../include/GLFW/windows/glfw3.h"
+ #include "../include/windows/GLFW/glfw3.h"
 #else
- #include "../include/GLFW/linux/glfw3.h"
+ #include "../include/linux/GLFW/glfw3.h"
 #endif
 
 #include "../include/stb_image.h"
@@ -19,6 +19,7 @@
 #include "camera.hpp"
 #include "object.hpp"
 #include "engine.hpp"
+#include "model.hpp"
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -137,8 +138,8 @@ int main() {
  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
  glEnableVertexAttribArray(0);
 
- shader lightingShader("shaders/lighting.vert", "shaders/lighting.frag");
- shader lightSourceShader("shaders/lightSource.vert", "shaders/lightSource.frag");
+ Shader lightingShader("shaders/lighting.vert", "shaders/lighting.frag");
+ Shader lightSourceShader("shaders/lightSource.vert", "shaders/lightSource.frag");
 
  glEnable(GL_DEPTH_TEST);
 
