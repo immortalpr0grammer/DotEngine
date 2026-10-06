@@ -17,7 +17,7 @@ namespace engine {
  extern float reloadTexturesLastTime;
  extern float toggleFlashLightLastTime;
 
- extern camera cam;
+ extern Camera cam;
 
  extern float FOV;
 
@@ -36,7 +36,7 @@ namespace engine {
 
  void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
- void processInput(GLFWwindow* window, shader* lightingShader);
+ void processInput(GLFWwindow* window, Shader* lightingShader);
 
  GLFWwindow* initEngine(int windowWidth, int windowHeight, char *windowName);
 

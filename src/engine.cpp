@@ -7,7 +7,7 @@ float engine::changeCursorModeLastTime = 0.0f;
 float engine::reloadTexturesLastTime = 0.0f;
 float engine::toggleFlashLightLastTime = 0.0f;
 
-camera engine::cam = camera(glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+Camera engine::cam = Camera(glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 float engine::FOV = 45.0f;
 
@@ -56,7 +56,7 @@ void engine::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
      FOV = 45.0f;
 }
 
-void engine::processInput(GLFWwindow* window, shader* lightingShader) {
+void engine::processInput(GLFWwindow* window, Shader* lightingShader) {
  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
   glfwSetWindowShouldClose(window, true);
  }

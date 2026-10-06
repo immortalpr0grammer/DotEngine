@@ -6,11 +6,11 @@
 
 #include <string>
 
-class shader {
+class Shader {
  public:
   unsigned int ID;
 
-  shader(const char* vertexPath, const char* fragmentPath);
+  Shader(const char* vertexPath, const char* fragmentPath);
   void use();
   void reload();
 

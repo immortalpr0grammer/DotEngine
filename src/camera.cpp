@@ -1,18 +1,18 @@
 #include "camera.hpp"
 
-camera::camera(glm::vec3 cameraPosition, glm::vec3 cameraFront, glm::vec3 cameraUp) {
+Camera::Camera(glm::vec3 cameraPosition, glm::vec3 cameraFront, glm::vec3 cameraUp) {
  this->position = cameraPosition;
  this->front = cameraFront;
  this->up = cameraUp;
 }
 
-glm::mat4 camera::getViewMatrix() {
+glm::mat4 Camera::getViewMatrix() {
  glm::mat4 view;
  view = glm::lookAt(this->position, this->position + this->front, this->up);
  return view;
 }
 
-void camera::turn(float yaw, float pitch) {
+void Camera::turn(float yaw, float pitch) {
  this->yaw += yaw;
  this->pitch += pitch;
  if (this->pitch > 89.0f) {
@@ -29,18 +29,18 @@ void camera::turn(float yaw, float pitch) {
  this->front = glm::normalize(direction);
 }
 
-void camera::forward(float value) {
+void Camera::forward(float value) {
  this->position += value * this->front;
 }
 
-void camera::backward(float value) {
+void Camera::backward(float value) {
  this->position -= value * this->front;
 }
 
-void camera::right(float value) {
+void Camera::right(float value) {
  this->position += glm::normalize(glm::cross(this->front, this->up)) * value;
 }
 
-void camera::left(float value) {
+void Camera::left(float value) {
  this->position -= glm::normalize(glm::cross(this->front, this->up)) * value;
 }

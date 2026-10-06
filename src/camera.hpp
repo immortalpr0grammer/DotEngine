@@ -5,14 +5,14 @@
 #include "../include/glm/gtc/matrix_transform.hpp"
 #include "../include/glm/gtc/type_ptr.hpp"
 
-class camera {
+class Camera {
  public:
   glm::vec3 position;
   glm::vec3 front;
   glm::vec3 up;
   float yaw = 0.0f, pitch = 0.0f;
 
-  camera(glm::vec3 cameraPosition, glm::vec3 cameraFront, glm::vec3 cameraUp);
+  Camera(glm::vec3 cameraPosition, glm::vec3 cameraFront, glm::vec3 cameraUp);
   glm::mat4 getViewMatrix();
   void turn(float yaw, float pitch);
   void forward(float value);
