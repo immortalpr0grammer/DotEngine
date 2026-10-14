@@ -21,3 +21,4 @@ run `start build/debug/engine.exe` in your terminal from the root of the project
 - Zoom in and out: `scrollwheel`
 - Go faster: `shift`
 - Toggle flaslight: `F`
+- Reload shaders: `R`
