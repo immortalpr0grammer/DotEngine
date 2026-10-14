@@ -1,12 +1,11 @@
 #ifndef ENGINE_H_
 #define ENGINE_H_
 
-
-#include "../include/glad/glad.h"
+#include <glad/glad.h>
 #ifdef _WIN32
- #include "../include/windows/GLFW/glfw3.h"
+ #include <windows/GLFW/glfw3.h>
 #else
- #include "../include/linux/GLFW/glfw3.h"
+ #include <linux/GLFW/glfw3.h>
 #endif
 
 #include "shader.hpp"

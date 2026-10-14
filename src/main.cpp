@@ -1,18 +1,19 @@
+#include "glm/ext/vector_float3.hpp"
 #include <iostream>
 #include <cmath>
 
-#include "../include/glad/glad.h"
+#include <glad/glad.h>
 #ifdef _WIN32
- #include "../include/windows/GLFW/glfw3.h"
+ #include <GLFW/glfw3.h>
 #else
- #include "../include/linux/GLFW/glfw3.h"
+ #include <GLFW/glfw3.h>
 #endif
 
-#include "../include/stb_image.h"
+#include <stb_image.h>
 
-#include "../include/glm/glm.hpp"
-#include "../include/glm/gtc/matrix_transform.hpp"
-#include "../include/glm/gtc/type_ptr.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "shader.hpp"
 #include "texture.hpp"
@@ -103,8 +104,6 @@ glm::vec3 cubeMovementGoals[11];
 
 int cubesADHD = 0; // NOTE: a value of 1 doesn't do stuff cause it's programmed badly by me
 
-/*const unsigned int indices[] = {
-};*/
 
 int main() {
  srand((unsigned int)time(0));
@@ -156,6 +155,8 @@ int main() {
 
  lightingShader.setBool("ignoreSpotLight", true);
 
+ Model backpack("models/backpack.obj");
+
  while (!glfwWindowShouldClose(window)) {
   float currentFrame = glfwGetTime();
   engine::deltaTime = currentFrame - engine::lastFrame;
@@ -178,10 +179,9 @@ int main() {
    sin(glfwGetTime() * 0.63f) * 0.5f + 0.5f
   );
 
-
   lightingShader.setVec3("directionalLight.direction", 0.2f, -1.0f, 0.3f);
   lightingShader.setVec3("directionalLight.ambient", 0.1f, 0.1f, 0.1f);
-  lightingShader.setVec3("directionalLight.diffuse", 0.7f, 0.7f, 0.7f);
+  lightingShader.setVec3("directionalLight.diffuse", 0.3f, 0.3f, 0.3f);
   lightingShader.setVec3("directionalLight.specular", 0.5f, 0.5f, 0.5f);
 
   lightingShader.setVec3("pointLights[0].position", pointLightPositions[0]);
@@ -228,32 +228,22 @@ int main() {
   lightingShader.setFloat("spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));
 
   lightingShader.setVec3("viewPos", engine::cam.position);
-  lightingShader.setInt("material.diffuse", 0);
-  lightingShader.setInt("material.specular", 1);
   lightingShader.setFloat("material.shininess", 32.0f);
 
   crateVAO.bind();
 
   glm::mat4 projection;
   projection = glm::perspective(glm::radians(engine::FOV), 800.0f / 600.0f, 0.1f, 100.0f);
-  glUniformMatrix4fv(glGetUniformLocation(lightingShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+  lightingShader.setMat4("projection", projection);
 
   glm::mat4 view;
   view = engine::cam.getViewMatrix();
-  glUniformMatrix4fv(glGetUniformLocation(lightingShader.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+  lightingShader.setMat4("view", view);
 
-  for (unsigned int i = 0; i < 11; i++) {
-   cubePositions[i] += cubeMovementGoals[i] * engine::deltaTime;
+  glm::mat4 model(1.0f);
+  lightingShader.setMat4("model", model);
 
-   glm::mat4 model(1.0f);
-   model = glm::translate(model, cubePositions[i]);
-   if (i == 10) {
-    model = glm::scale(model, glm::vec3(30.0f, 5.0f, 30.0f));
-   }
-   glUniformMatrix4fv(glGetUniformLocation(lightingShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-
-   glDrawArrays(GL_TRIANGLES, 0 , 36);
-  }
+  backpack.draw(&lightingShader);
 
   lightSourceShader.use();
   lightSourceShader.setVec3("color", lightColor);
@@ -271,8 +261,6 @@ int main() {
    glDrawArrays(GL_TRIANGLES, 0, 36);
   }
 
-  // Commented, cause for testing purposes indices arent being used
-  // glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(float), GL_UNSIGNED_INT, 0);
 
   glfwSwapBuffers(window);
   glfwPollEvents();

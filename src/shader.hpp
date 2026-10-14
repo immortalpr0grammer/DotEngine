@@ -1,8 +1,8 @@
 #ifndef SHADER_H_
 #define SHADER_H_
 
-#include "../include/glad/glad.h"
-#include "../include/glm/glm.hpp"
+#include <glad/glad.h>
+#include <glm/glm.hpp>
 
 #include <string>
 
@@ -21,6 +21,7 @@ class Shader {
   void setVec3(const std::string &name, glm::vec3 value) const;
   void setVec4(const std::string &name, float x, float y, float z, float w) const;
   void setVec4(const std::string &name, glm::vec4 value) const;
+  void setMat4(const std::string &name, glm::mat4 value) const;
 
   bool getBool(const std::string &name);
   int getInt(const std::string &name);

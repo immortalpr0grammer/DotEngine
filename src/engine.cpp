@@ -1,6 +1,7 @@
 #include "engine.hpp"
 #include <iostream>
 
+#include <stb_image.h>
 
 /* Global variables */
 float engine::changeCursorModeLastTime = 0.0f;
@@ -128,6 +129,8 @@ GLFWwindow* engine::initEngine(int windowWidth, int windowHeight, char *windowNa
  glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
  glfwSetCursorPosCallback(window, mouse_callback);
  glfwSetScrollCallback(window, scroll_callback);
+
+ stbi_set_flip_vertically_on_load(true);
 
  return window;
 }

@@ -3,19 +3,20 @@
 
 #include "mesh.hpp"
 
-#include "../include/linux/assimp/Importer.hpp"
-#include "../include/linux/assimp/scene.h"
-#include "../include/linux/assimp/postprocess.h"
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 class Model {
  public:
-  Model(char *path) {
+  Model(const char *path) {
    loadModel(path);
   }
   void draw(Shader *shader);
  private:
   std::vector<Mesh> meshes;
   std::string directory;
+  std::vector<Texture> texturesLoaded;
 
   void loadModel(std::string path);
   void processNode(aiNode *node, const aiScene *scene);
